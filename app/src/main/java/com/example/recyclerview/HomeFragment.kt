@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recyclerview.databinding.FragmentHomeBinding
 
@@ -17,7 +18,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater,container,false)
-        val adapter = EmployeeAdapter()
+        val adapter = EmployeeAdapter {
+            Toast.makeText(activity, "${it.name}", Toast.LENGTH_SHORT).show()
+        }
         binding.emplyoueeRecycler.layoutManager = LinearLayoutManager(activity)
         binding.emplyoueeRecycler.adapter = adapter
         adapter.submitList(employeeList)
